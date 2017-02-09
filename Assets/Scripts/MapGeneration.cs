@@ -7,13 +7,13 @@ public class MapGeneration : MonoBehaviour {
     public int maxTiles;
 
     public GameObject seperator;
-    public float seperatorSize;
+    private float seperatorSize;
 
     public GameObject[] sections;
 
     public float deltaSpawnTime;
 
-    public ArrayList spawned = new ArrayList();
+    private ArrayList spawned = new ArrayList();
     private int dist = 1;
     private float time = 0;
 
@@ -36,7 +36,7 @@ public class MapGeneration : MonoBehaviour {
 
     void SpawnNext() { 
         //make room for the new tile and seperator
-        while (spawned.Count > maxTiles * 2) {
+        while (spawned.Count >= (maxTiles - 1) * 2) {
             (spawned[0] as GameObject).SetActive(false);
             spawned.RemoveAt(0);
         }

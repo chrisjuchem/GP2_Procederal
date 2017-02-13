@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 	void FixedUpdate () {
 		Move ();
 
-		if (transform.position.y < -40) {
+		if (transform.position.y < -25) {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 		}
 	}

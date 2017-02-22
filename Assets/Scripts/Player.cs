@@ -8,11 +8,11 @@ public class Player : MonoBehaviour {
 
 	public float speed;
 
-    private int score;
+	public int score = 0;
 
 	void FixedUpdate () {
 		Move ();
-
+	
 		if (transform.position.y < -25) {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 		}

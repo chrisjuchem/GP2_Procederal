@@ -17,6 +17,7 @@ public class MapGeneration : MonoBehaviour {
     private int dist = 1;
     private float time;
 
+	public int numSpawned = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -39,7 +40,7 @@ public class MapGeneration : MonoBehaviour {
     void SpawnNext() { 
         //make room for the new tile and seperator
         while (spawned.Count >= maxTiles * 2 - 1) {
-            (spawned[0] as GameObject).SetActive(false);
+			Destroy(spawned[0] as GameObject);
             spawned.RemoveAt(0);
         }
 
@@ -50,5 +51,6 @@ public class MapGeneration : MonoBehaviour {
         Vector3 tilePos = new Vector3(dist * (10 + seperatorSize), 0, 0);
         spawned.Add(Instantiate(tile, tilePos, Quaternion.identity));
 
+		numSpawned+=4;
     }
 }

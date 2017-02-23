@@ -7,8 +7,8 @@ public class UI : MonoBehaviour {
 
 	public Player player;
 	public MapGeneration spawner;
-	
-	// Update is called once per frame
+
+	//Update the score text
 	void Update () {
 		gameObject.GetComponent<Text>().text = player.score + "/" + spawner.numSpawned;
 	}

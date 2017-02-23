@@ -17,12 +17,14 @@ public class MapGeneration : MonoBehaviour {
     private int dist = 1;
     private float time;
 
-	public int numSpawned = 0;
+	public int numSpawned = 0; //pickups
 
 	// Use this for initialization
 	void Start () {
+		//1 second delay before first spawn
 		time = deltaSpawnTime - 1;
 
+		//record info about the size of the seperator
         seperatorSize = seperator.transform.localScale.x * 10;
 
         spawned.AddRange(GameObject.FindGameObjectsWithTag("Spawn"));
@@ -30,7 +32,10 @@ public class MapGeneration : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//account for time passing
         time += Time.deltaTime;
+
+		// spawn if a full interval has passed
         if (time >= dist * deltaSpawnTime) {
             SpawnNext();
             dist++;
@@ -44,13 +49,16 @@ public class MapGeneration : MonoBehaviour {
             spawned.RemoveAt(0);
         }
 
+		//spawn a seperator
         Vector3 sepPos = new Vector3(dist * (10 + seperatorSize) - (5 + (seperatorSize / 2)), 0, 0);
         spawned.Add(Instantiate(seperator, sepPos, Quaternion.identity));
 
+		//Spawn a random tile
         GameObject tile = sections[Random.Range(0, sections.Length)];
         Vector3 tilePos = new Vector3(dist * (10 + seperatorSize), 0, 0);
         spawned.Add(Instantiate(tile, tilePos, Quaternion.identity));
 
+		// 4 new pickups were spawned
 		numSpawned+=4;
     }
 }
